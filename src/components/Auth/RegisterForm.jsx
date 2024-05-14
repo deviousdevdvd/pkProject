@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { register } from '../services/authService'; // Suppose this is your registration API call
-import { useHistory } from 'react-router-dom';
+import { useHistory, useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
   const [user, setUser] = useState({
@@ -12,7 +12,7 @@ const RegisterForm = () => {
   });
 
   const [error, setError] = useState('');
-  const history = useHistory(); // Initialisez le hook pour la redirection
+  const history = useNavigate(); // Initialisez le hook pour la redirection
 
   const handleChange = (e) => {
     const { name, value } = e.target;

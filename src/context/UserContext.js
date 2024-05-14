@@ -11,6 +11,8 @@ export const UserProvider = ({ children }) => {
     // Simulez le chargement de données utilisateur
     const loadUserData = async () => {
       // Utilisez ici vos services pour charger les données de l'utilisateur réel
+      // Remplacez ceci par un appel réel à une API pour récupérer les données utilisateur
+      const fetchedUser = await getUserData(); // Remplacez getUserData par votre fonction d'appel API
       setUser({ name: 'John Doe', points: 120 });
     };
 
@@ -31,4 +33,9 @@ export const useUser = () => {
     throw new Error('useUser doit être utilisé au sein d’un UserProvider');
   }
   return context;
+};
+
+const getUserData = async () => {
+  // Simulez un appel API
+  return { name: 'John Doe', points: 120 };
 };

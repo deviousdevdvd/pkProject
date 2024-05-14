@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '/Users/melbo/pkProjetBackend/pkprojetfront/src/context/AuthContext';
 
 const LoginForm = () => {
   const [credentials, setCredentials] = useState({ email: '', password: '' });

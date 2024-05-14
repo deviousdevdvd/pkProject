@@ -1,37 +1,64 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { login as apiLogin, register as apiRegister } from '../services/authService';
+import { useNavigate } from 'react-router-dom';
+import { loginService, registerService, logoutService } from '../services/authService';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Supposons que vous ayez une fonction `checkUserSession` qui vérifie la session courante
-    // Vous devrez l'implémenter dans votre service d'authentification
-    const checkUserSession = async () => {
-      setIsLoading(true);
-      // Logique pour vérifier si l'utilisateur est déjà connecté
-      setIsLoading(false);
+    // Check if the user is logged in on mount
+    const fetchCurrentUser = async () => {
+      try {
+        const user = await getCurrentUser(); // Assume you have a service to get the current user
+        setCurrentUser(user);
+      } catch (error) {
+        console.error('Failed to fetch current user:', error);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
-    checkUserSession();
+    fetchCurrentUser();
   }, []);
 
   const login = async (email, password) => {
-    const user = await apiLogin(email, password);
-    setCurrentUser(user);
+    setIsLoading(true);
+    try {
+      const user = await loginService(email, password);
+      setCurrentUser(user);
+      navigate('/dashboard'); // Redirect to dashboard on login
+    } catch (error) {
+      console.error('Login failed:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const register = async (user) => {
-    const newUser = await apiRegister(user);
-    setCurrentUser(newUser);
+  const register = async (userData) => {
+    setIsLoading(true);
+    try {
+      const user = await registerService(userData);
+      setCurrentUser(user);
+      navigate('/dashboard'); // Redirect to dashboard on registration
+    } catch (error) {
+      console.error('Registration failed:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const logout = () => {
-    // Logique pour déconnecter l'utilisateur
-    setCurrentUser(null);
+  const logout = async () => {
+    try {
+      await logoutService();
+      setCurrentUser(null);
+      navigate('/login'); // Redirect to login on logout
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
   };
 
   return (
