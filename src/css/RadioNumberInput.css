@@ -1,0 +1,37 @@
+.radio-number-input {
+    margin-bottom: 15px;
+  }
+  
+  .radio-group {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .radio-option {
+    position: relative;
+  }
+  
+  .radio-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .radio-bubble {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    color: #000;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .radio-option input[type="radio"]:checked + .radio-bubble {
+    background-color: #007bff;
+    color: #fff;
+  }
+  

@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { createTask } from '/Users/melbo/pkProjetBackend/pkprojetfront/src/services/taskService'; // Suppose this is your task creation API call
 import { getProjects } from '/Users/melbo/pkProjetBackend/pkprojetfront/src/services/projectService'
 import { useHistory, useNavigate } from 'react-router-dom';
+import RadioNumberInput from '../Common/RadioNumberInput';
 
 const TaskForm = ({ projectId }) => {
   const [task, setTask] = useState({
     title: '',
     description: '',
     projetctLier :'',
+    levelTask: '',
     dueDate: ''
   });
 
@@ -58,55 +60,47 @@ const TaskForm = ({ projectId }) => {
   return (
     <form onSubmit={handleSubmit}>
       {error && <p className="error">{error}</p>}
-      <div>
-        <label htmlFor="title">Titre:</label>
-        <input
-          type="text"
-          id="title"
+      
+        <TextInput
+          label="Titre:"
           name="title"
           value={task.title}
           onChange={handleChange}
+          type="text"
           required
         />
-      </div>
-      <div>
-        <label htmlFor="description">Description:</label>
-        <textarea
-          id="description"
+      
+        <TextArea
+          label="Description:"
           name="description"
           value={task.description}
           onChange={handleChange}
           required
         />
-      </div>
       
-      <div>
-        <label htmlFor="project">Projet associé:</label>
-        <select
-          id="project"
-          name="projetctLier"
-          value={task.projetctLier}
-          onChange={handleChange}
-          required
-        >
-          <option value="">Sélectionner un projet</option>
-          {projects.map((project) => (
-            <option key={project.id} value={project.id}>{project.title}</option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <label htmlFor="dueDate">Date d'échéance:</label>
-        <input
-          type="date"
-          id="dueDate"
-          name="dueDate"
-          value={task.dueDate}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <button type="submit">Créer Tâche</button>
+      
+      <ProjectSelect
+        label="Projet associé:"
+        name="projetctLier"
+        value={task.projetctLier}
+        onChange={handleChange}
+        required
+      />
+      <RadioNumberInput
+        label= "Difficulté de la tâche"
+        name="levelTask"
+        value={task.levelTask}
+        onChange={handleChange}
+        required
+      />  
+      <DateInput
+        label="Date d'échéance:"
+        name="dueDate"
+        value={task.dueDate}
+        onChange={handleChange}
+        required
+      />
+      <Button type="submit">Créer Tâche</Button>
     </form>
   );
 };

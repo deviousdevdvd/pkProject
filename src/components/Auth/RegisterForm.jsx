@@ -49,61 +49,56 @@ const RegisterForm = () => {
     <form onSubmit={handleSubmit}>
       {error && <p className="error">{error}</p>}  
       <div>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
+        <TextInput
+          label="Email:"
           name="email"
           value={user.email}
           onChange={handleChange}
+          type="email"
           required
         />
       </div>
       <div>
-        <label htmlFor="password">Mot de passe :</label>
-        <input
-          type="password"
-          id="password"
+        <TextInput
+          label="Mot de passe :"
           name="password"
           value={user.password}
           onChange={handleChange}
+          type="password"
           required
         />
       </div>
       <div>
-        <label htmlFor="confirmPassword">Comfirmation Mot de passe :</label>
-        <input
-          type="password"
-          id="confirmPassword"
+        <TextInput
+          label="Confirmation Mot de passe :"
           name="confirmPassword"
           value={user.confirmPassword}
           onChange={handleChange}
+          type="password"
           required
         />
       </div>
       <div>
-        <label htmlFor="nomMembre">Nom :</label>
-        <input
-          type="text"
-          id="nomMembre"
+        <TextInput
+          label="Nom :"
           name="nomMembre"
           value={user.nom}
           onChange={handleChange}
+          type="text"
           required
         />
       </div>
       <div>
-        <label htmlFor="prenomMembre">Prénom :</label>
-        <input
-          type="text"
-          id="prenomMembre"
+        <TextInput
+          label="Prénom :"
           name="prenomMembre"
           value={user.prenom}
           onChange={handleChange}
+          type="text"
           required
         />
       </div>
-      <button type="submit">Inscription</button>
+      <Button label="Inscription" type="submit" />
     </form>
   );
 };

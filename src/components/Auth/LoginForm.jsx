@@ -23,24 +23,22 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
+        <TextInput
+          label="Email:"
           name="email"
           value={credentials.email}
           onChange={handleChange}
+          type="email"
           required
         />
       </div>
       <div>
-        <label htmlFor="password">Mot de passe:</label>
-        <input
-          type="password"
-          id="password"
+        <TextInput
+          label="Mot de passe:"
           name="password"
           value={credentials.password}
           onChange={handleChange}
+          type="password"
           required
         />
       </div>

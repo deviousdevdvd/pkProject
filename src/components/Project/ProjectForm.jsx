@@ -7,7 +7,7 @@ const ProjectForm = () => {
     title: '',
     description: '',
     startDate: '',
-    nbtask : "",
+    nbtask : "2",
     endDate: ''
   });
 
@@ -32,63 +32,48 @@ const ProjectForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       {error && <p className="error">{error}</p>}
-      <div>
-        <label htmlFor="title">Titre:</label>
-        <input
-          type="text"
-          id="title"
+      
+        <TextInput
+          label="Titre:"
           name="title"
           value={project.title}
           onChange={handleChange}
+          type="text"
           required
         />
-      </div>
-      <div>
-        <label htmlFor="description">Description:</label>
-        <textarea
-          id="description"
+      
+        <TextArea
+          label="Description:"
           name="description"
           value={project.description}
           onChange={handleChange}
           required
         />
-      </div>
-      <div>
-        <label htmlFor="startDate">Date de début:</label>
-        <input
-          type="date"
-          id="startDate"
+      
+        <DateInput
+          label="Date de début:"
           name="startDate"
           value={project.startDate}
           onChange={handleChange}
           required
         />
-      </div>
-      <div>
-        <label htmlFor="taskCount">Nombre de tâches effectuées pour le projet (entre 2 et 8):</label>
-        <input
-          type="number"
-          id="taskCount"
-          name="taskCount"
-          value={project.nbtask}
-          onChange={handleChange}
-          min={2}
-          max={8}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="endDate">Date de fin:</label>
-        <input
-          type="date"
-          id="endDate"
-          name="endDate"
-          value={project.endDate}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <button type="submit">Créer Projet</button>
+      <NumberInput
+        label="Nombre de tâches effectuées pour le projet (entre 2 et 8):"
+        name="taskCount"
+        value={project.nbtask}
+        onChange={handleChange}
+        min={2}
+        max={8}
+        required
+      />
+      <DateInput
+        label="Date de fin:"
+        name="endDate"
+        value={project.endDate}
+        onChange={handleChange}
+        required
+      />
+      <Button type="submit">Créer Projet</Button>
     </form>
   );
 };
