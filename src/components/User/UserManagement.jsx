@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getUsers, deleteUser } from 'Users/melbo/pkProjetBackend/pkprojetfront/src/services/userService';
+import Button from '../Common/Button.jsx';
 
 const UserManagement = () => {
   const [users, setUsers] = useState([]);
@@ -35,7 +36,7 @@ const UserManagement = () => {
         {users.map((user) => (
           <li key={user.id}>
             <span>{user.prenom} {user.nom} ({user.email})</span>
-            <button onClick={() => handleDelete(user.id)}>Supprimer</button>
+            <Button onClick={() => handleDelete(user.id)}>Supprimer</Button>
           </li>
         ))}
       </ul>

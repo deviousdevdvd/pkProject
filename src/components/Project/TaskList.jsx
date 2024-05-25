@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { getTasks } from '/Users/melbo/pkProjetBackend/pkprojetfront/src/services/taskService';
 import { Link } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom/dist';
+import Button from '../Common/Button';
 
 const TaskList = ({ projectId }) => {
   const [tasks, setTasks] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -18,6 +21,10 @@ const TaskList = ({ projectId }) => {
     fetchTasks();
   }, [projectId]);
 
+  const viewTask = (taskId) => {
+    navigate(`/projects/${projectId}/tasks/${taskId}`);
+  }
+
   return (
     <div>
       <h2>Liste des Tâches</h2>
@@ -25,7 +32,7 @@ const TaskList = ({ projectId }) => {
         {tasks.map((task) => (
           <li key={task.id}>
             <span>{task.title}</span>
-            <Link to={`/projects/${projectId}/tasks/${task.id}`}>Voir la tâche</Link>
+            <Button onClick={() => viewTask(task.id)} label="Voir la tâche" />
           </li>
         ))}
       </ul>

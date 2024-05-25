@@ -19,6 +19,9 @@ const Dashboard = () => {
 
     fetchProjects();
   }, []);
+  const handleCreateProject = () => {
+    // Logique pour créer un nouveau projet
+  };
 
   return (
     <div className="dashboard">
@@ -33,7 +36,7 @@ const Dashboard = () => {
         ))}
       </ul>
       <Link to="/projects/new">
-        <button>Créer un nouveau projet</button>
+        <Button label="Créer un nouveau projet" onClick={handleCreateProject} />
       </Link>
       {/* Ajoutez d'autres composants liés au tableau de bord si nécessaire */}
     </div>

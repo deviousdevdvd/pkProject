@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { register } from '../services/authService'; // Suppose this is your registration API call
 import { useHistory, useNavigate } from 'react-router-dom';
+import TextInput from '../Common/TextInput.jsx';
+import Button from '../Common/Button.jsx';
+
 
 const RegisterForm = () => {
   const [user, setUser] = useState({

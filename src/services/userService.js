@@ -42,6 +42,16 @@ export const deleteUser = async (userId) => {
   }
 };
 
+// Récupérer la liste de tous les utilisateurs
+export const getUsers = async () => {
+  try {
+    const response = await axios.get(API_URL);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 
 /*API_URL : L'URL de base pour vos appels API liés aux utilisateurs. Modifiez-la pour qu'elle corresponde à votre configuration de backend.
 getUserById : Récupère les données d'un utilisateur spécifique en utilisant son ID.

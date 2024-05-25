@@ -3,6 +3,15 @@ import { createTask } from '/Users/melbo/pkProjetBackend/pkprojetfront/src/servi
 import { getProjects } from '/Users/melbo/pkProjetBackend/pkprojetfront/src/services/projectService'
 import { useHistory, useNavigate } from 'react-router-dom';
 import RadioNumberInput from '../Common/RadioNumberInput';
+import TextInput from '../Common/TextInput.jsx';
+import Button from '../Common/Button.jsx';
+import TextArea from '../Common/TextArea.jsx';
+import ProjectSelect from '../Common/ProjectSelect.jsx'
+import DateInput from '../Common/DateInput.jsx'
+
+
+
+
 
 const TaskForm = ({ projectId }) => {
   const [task, setTask] = useState({

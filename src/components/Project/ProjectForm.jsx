@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { createProject } from '/Users/melbo/pkProjetBackend/pkprojetfront/src/services/projectService'; // Suppose this is your project creation API call
 import { useHistory, useNavigate } from 'react-router-dom';
+import TextInput from '../Common/TextInput.jsx';
+import Button from '../Common/Button.jsx';
+import TextArea from '../Common/TextArea.jsx';
+import NumberInput from '../Common/NumberInput.jsx'
+import DateInput from '../Common/DateInput.jsx';
 
 const ProjectForm = () => {
   const [project, setProject] = useState({

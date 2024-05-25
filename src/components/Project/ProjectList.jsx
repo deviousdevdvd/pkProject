@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { getProjects } from '/Users/melbo/pkProjetBackend/pkprojetfront/src/services/projectService'; // Suppose this is your project fetching API call
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom/dist';
+import Button from '../Common/Button';
 
 const ProjectList = () => {
   const [projects, setProjects] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -18,6 +21,10 @@ const ProjectList = () => {
     fetchProjects();
   }, []);
 
+  const viewProject = (projectId) => {
+    navigate(`/projects/${projectId}`);
+  };
+
   return (
     <div>
       <h2>Liste des Projets</h2>
@@ -25,7 +32,7 @@ const ProjectList = () => {
         {projects.map((project) => (
           <li key={project.id}>
             <span>{project.title}</span>
-            <Link to={`/projects/${project.id}`}>Voir le projet</Link>
+            <Button onClick={() => viewProject(project.id)} label="Voir le projet" />
           </li>
         ))}
       </ul>
